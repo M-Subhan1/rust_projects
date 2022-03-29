@@ -21,7 +21,7 @@ fn main() {
             std::process::exit(1);
         });
 
-    for stream in listener.incoming().take(2) {
+    for stream in listener.incoming() {
         match stream {
             Ok(stream) => thread_pool.execute(|| {handle_connection(stream)}),
             Err(e) => eprintln!("Problem handling connection: {}", e)
