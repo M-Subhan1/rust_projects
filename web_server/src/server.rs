@@ -109,7 +109,8 @@ impl Config {
         }
         
         if args.len() == 2 && args[1].contains("-h") {
-            // print help
+            println!("Available Configuration\n\t-h: brings up the current help menu\n\t-p specify port to use\n\t-t specify the number of threads to allocate\n\tNote: If using multiple flags use the following syntax -pt [PORT] [NUM_THREADS]\n.");
+            return Err("help");
         } else if args.len() == 3 && args[1].contains("-t") {
             match args[2].parse::<usize>() {
                 Ok(num) => threads = num,
@@ -123,7 +124,7 @@ impl Config {
         } else if args.len() == 4 && args[1].contains("-pt")  {
             port = args[2].parse::<u16>().unwrap();
             threads = args[3].parse::<usize>().unwrap();
-        }
+        } 
         
         Ok(Config {
             port,

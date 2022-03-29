@@ -10,6 +10,10 @@ use server::ThreadPool;
 
 fn main() {
     let config: server::Config = server::Config::new(env::args().collect()).unwrap_or_else(|err| {
+        if err == "help" {
+            std::process::exit(0)
+        };
+
         eprintln!("Problem parsing arguments: {}", err);
         std::process::exit(1);
     });
